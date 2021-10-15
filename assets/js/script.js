@@ -59,6 +59,10 @@ console.log(length);
       }
 
       console.log(specialCharacters1);
+     if( numbers = 0 && upperCase1 = 0 && lowerCase1 = 0 && specialCharacters = 0 ) {
+       
+     }
+    
 
 
     var password = [];
