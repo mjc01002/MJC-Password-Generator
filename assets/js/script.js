@@ -1,13 +1,18 @@
 // Assignment code here
 var length = getPasswordLength();
 var characterPool = [];
-const numbersList = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-const upperCase2 = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-const lowerCase2 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-const specialChar = ['!', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~'];
+const numbersList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const upperCase2 = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+const lowerCase2 = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const specialChar = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]" , "^", "_", "`", "{", "|", "}", "~"];
+const doNotInclude = [];
+var numbers1 = "";
+var upperCase3 = "";
+var lowerCase3 = "";
+var specialChar1 ="";
+var passwordTemp = [];
 
-
-//document.querySelector('#generate').addEventListener("click", getPasswordLength());
+//document.querySelector("#generate").addEventListener("click", getPasswordLength());
 
 
 
@@ -21,75 +26,114 @@ function getPasswordLength() {
   }
 
   return length;
-  
 }
 
-
 function generatePassword() {
-
-    var numbers = prompt("Do you want numbers in your password?");
+    
+    var password = "";
+    var numbers = prompt("Do you want numbers in your password?")
     var numbers = numbers.toLowerCase()
     if(numbers === "yes") {
       characterPool.push.apply(characterPool, numbersList);
-    
+      numbers1 = Math.floor(Math.random() *numbersList.length);
+      passwordTemp.push(numbersList[numbers1]);
       } else {
-      numbers = 0;
-}
-      console.log(numbers);
+        numbers1 = Math.floor(Math.random() *doNotInclude.length);
+        
+      
+}     console.log(passwordTemp);
+      console.log(numbers1);
       console.log(characterPool);
+      
+      
       
       
     var upperCase = window.prompt("Do you want uppercase letters in your password?");
     var upperCase1 = upperCase.toLowerCase()
     if(upperCase1 === "yes") {
       characterPool.push.apply(characterPool, upperCase2);
-          
-        } else {
-      upperCase1 = 0;
-}
+      upperCase3 = Math.floor(Math.random() * upperCase2.length);  
+      passwordTemp.push(upperCase2[upperCase3]);
+      } else {
+        upperCase3 = Math.floor(Math.random() *doNotInclude.length);
+      
+      
+}   console.log(passwordTemp);
     console.log(upperCase1);
     console.log(characterPool);
+   
   
       var lowerCase = prompt("Do you want lower case letters in your password?");
       var lowerCase1= lowerCase.toLowerCase();
       if(lowerCase1 === "yes") {
         characterPool.push.apply(characterPool, lowerCase2);
-          
+        lowerCase3 = Math.floor(Math.random() *lowerCase2.length);
+        passwordTemp.push(lowerCase2[lowerCase3]);
         } else {
-          lowerCase1 = 0;
+          lowerCase3 = Math.floor(Math.random() *doNotInclude.length);
+          
 
     }
+    console.log(passwordTemp);
     console.log(lowerCase1);
+    console.log(characterPool);
+    
   
       var specialCharacters = prompt("Do you want special characters in your password?");
       var specialCharacters1 = specialCharacters.toLowerCase();
       if(specialCharacters1 === "yes") {
         characterPool.push.apply(characterPool, specialChar);
-    
-      } else {
-        specialCharacters1 = 0;
+        specialChar1 = Math.floor(Math.random() *specialChar.length);
+        passwordTemp.push(specialChar[specialChar1])
+        } else {
+          specialChar1 = Math.floor(Math.random() *doNotInclude.length);
+        
       }
-
+      console.log(passwordTemp);
+      console.log(specialChar1);
       console.log(specialCharacters1);
       console.log(characterPool);
-    // if(numbers = 0 && upperCase1 = 0 && lowerCase1 = 0 && specialCharacters = 0 ) {
-
-     }
+     
     
+      password = passwordTemp.join("");
+      console.log(password);
+      
+      // check that criteria is met
+      if(numbers + upperCase1 + lowerCase1 + specialCharacters1 === "nononono") {
+        alert("Need to include at least on number, upper case letter, lower case letter, or special character");
+        return generatePassword();
+       } else {}
+      
+      
+    
+     }
+     generatePassword()
+    // const months = ["January", "February", "March", "April", "May", "June", "July"];
 
+      //var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    
+     
+       // password = numbersList[Math.floor(Math.random() * numbersList)] + upperCase2[Math.floor(Math.random() * upperCase2)] + lowerCase2[Math.floor(Math.random() * lowerCase2)];
+    
+      
 
-    var password = [];
-    let i = 0;
-    while (i < length) {
-    password.push(Math.round(Math.random() * upperCase2.length));
-    i++;
-    var password1 = password.join("");
-    console.log(password1);
+      
+    
+    
+  
+
+    //var password = [];
+    //let i = 0;
+    //while (i < length) {
+    //password.push(Math.round(Math.random() * upperCase2.length));
+    //i++;
+    //var password1 = password.join("");
+    //console.log(password1);
     
     //console.log(password);
   
 
-document.getElementById("password").value = password1;
+//document.getElementById("password").value = password1;
 
      //while (password.length < length) {
  //password += //get a random character of the desired types
@@ -106,11 +150,11 @@ function writePassword() {
   passwordText.value = password1;
 
 }
-      }
+      
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-generatePassword()
+
 
   
       
@@ -122,4 +166,4 @@ generatePassword()
 
 //generatePassword()
 
-//document.querySelector('#generate').addEventListener("click", getPasswordLength); {
+//document.querySelector("#generate").addEventListener("click", getPasswordLength); {
