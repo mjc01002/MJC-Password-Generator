@@ -18,7 +18,7 @@ var passwordReshuffle = [];
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", generatePassword);
 
-// Password Length
+// Password Length function
 
 function getPasswordLength() {
   
@@ -35,6 +35,7 @@ function getPasswordLength() {
   
 }
 
+//generate password function - sets character requirements, generates a random password from a set of character, and push text of password to screen.
 function generatePassword() {
     var length = getPasswordLength();
     var password = "";
@@ -46,11 +47,7 @@ function generatePassword() {
       passwordTemp.push(numbersList[numbers1]);
       } else {
         numbers1 = Math.floor(Math.random() *doNotInclude.length);
-        
-      
-}     console.log(passwordTemp);
-      console.log(numbers1);
-      console.log(characterPool);
+    }     
       
       
       
@@ -63,73 +60,48 @@ function generatePassword() {
       passwordTemp.push(upperCase2[upperCase3]);
       } else {
         upperCase3 = Math.floor(Math.random() *doNotInclude.length);
-      
-      
-}   console.log(passwordTemp);
-    console.log(upperCase1);
-    console.log(characterPool);
-   
+    }   
   
-      var lowerCase = prompt("Do you want lower case letters in your password?");
-      var lowerCase1= lowerCase.toLowerCase();
-      if(lowerCase1 === "yes") {
-        characterPool.push.apply(characterPool, lowerCase2);
-        lowerCase3 = Math.floor(Math.random() *lowerCase2.length);
-        passwordTemp.push(lowerCase2[lowerCase3]);
-        } else {
+    var lowerCase = prompt("Do you want lower case letters in your password?");
+    var lowerCase1= lowerCase.toLowerCase();
+    if(lowerCase1 === "yes") {
+      characterPool.push.apply(characterPool, lowerCase2);
+      lowerCase3 = Math.floor(Math.random() *lowerCase2.length);
+      passwordTemp.push(lowerCase2[lowerCase3]);
+      } else {
           lowerCase3 = Math.floor(Math.random() *doNotInclude.length);
-          
-
     }
-    console.log(passwordTemp);
-    console.log(lowerCase1);
-    console.log(characterPool);
-    
   
-      var specialCharacters = prompt("Do you want special characters in your password?");
-      var specialCharacters1 = specialCharacters.toLowerCase();
-      if(specialCharacters1 === "yes") {
-        characterPool.push.apply(characterPool, specialChar);
-        specialChar1 = Math.floor(Math.random() *specialChar.length);
-        passwordTemp.push(specialChar[specialChar1])
-        } else {
+    var specialCharacters = prompt("Do you want special characters in your password?");
+    var specialCharacters1 = specialCharacters.toLowerCase();
+    if(specialCharacters1 === "yes") {
+      characterPool.push.apply(characterPool, specialChar);
+      specialChar1 = Math.floor(Math.random() *specialChar.length);
+      passwordTemp.push(specialChar[specialChar1])
+      } else {
           specialChar1 = Math.floor(Math.random() *doNotInclude.length);
-        
-      }
-      console.log(passwordTemp);
-      console.log(specialChar1);
-      console.log(specialCharacters1);
-      console.log(characterPool);
-     
-    
+    }
+      // This line makes sure the password includes the characters based on the asked questions. 
       password = passwordTemp.join("");
-      console.log(password);
-      console.log(password.length);
-      console.log(length);
-      
     
-      
-
       // check that criteria is met
-      if(numbers + upperCase1 + lowerCase1 + specialCharacters1 === "nononono") {
-        alert("Need to include at least on number, upper case letter, lower case letter, or special character");
-        return generatePassword();
-       } else {}
+    if(numbers + upperCase1 + lowerCase1 + specialCharacters1 === "nononono") {
+      alert("Need to include at least on number, upper case letter, lower case letter, or special character");
       
+      return generatePassword();
+       } else {
+        
+    }
       
-      while (password.length < length){
+      // adds the required amount of characters based on the first question and randomizes it for a unique password. 
+    while (password.length < length){
       password += characterPool[Math.floor(Math.random() *characterPool.length)];
       
-      console.log(password);
-      
-      }
+    }
       var passwordReshuffle = password.split('').sort(function(){return 0.5-Math.random()}).join('');
 
-      console.log(passwordReshuffle);
-
+      // oushes password to password box on screen. 
       var passwordText = document.querySelector("#password");
-
-      
       passwordText.value = passwordReshuffle;
       
       return passwordReshuffle;
