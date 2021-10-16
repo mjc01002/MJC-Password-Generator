@@ -23,14 +23,15 @@ function getPasswordLength() {
   
   var length = parseInt(prompt("What length would you like for the password? (min: 8, max: 128)"));
 
-  while (length < 8 || length > 128) {
+
+
+  while (length < 8 || length > 128 || isNaN(length)) {
    alert("Invalid length. Re-enter length.");
    length = parseInt(prompt("What length would you like for the password? (min: 8, max: 128)"));
   }
 
   return length;
   
-
 }
 
 function generatePassword() {
