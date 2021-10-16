@@ -14,10 +14,11 @@ var passwordTemp = [];
 var passwordReshuffle = [];
 
 
-
+// Set Buotton to run generate password function
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", generatePassword);
-//document.querySelector("#generate").addEventListener("click", getPasswordLength());
+
+// Password Length
 
 function getPasswordLength() {
   
@@ -106,10 +107,8 @@ function generatePassword() {
       console.log(password.length);
       console.log(length);
       
-     var password2 = length - password.length;
-     console.log(password2);
-
-      //console.log(passwordLength);
+    
+      
 
       // check that criteria is met
       if(numbers + upperCase1 + lowerCase1 + specialCharacters1 === "nononono") {
@@ -119,32 +118,25 @@ function generatePassword() {
       
       
       while (password.length < length){
-      password += Math.floor(Math.random() *upperCase2.length);
+      password += characterPool[Math.floor(Math.random() *characterPool.length)];
       
       console.log(password);
+      
       }
+      var passwordReshuffle = password.split('').sort(function(){return 0.5-Math.random()}).join('');
 
-      return password.split('').join('');
+      console.log(passwordReshuffle);
+
+      var passwordText = document.querySelector("#password");
+
+      
+      passwordText.value = passwordReshuffle;
+      
+      return passwordReshuffle;
     
     }
-// Get references to the #generate element
-//var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-  function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-
-    console.log(password);
-    passwordText.value = password;
-
-}
-      
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
 
 
-  
       
     
 
